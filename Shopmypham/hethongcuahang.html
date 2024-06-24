@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ thống khách hàng</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            width: 100%;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        header div {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+        header a {
+            text-decoration: none;
+            color: grey;
+            line-height: 40px;
+            margin-left: 20px;
+        }
+        header ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+        header a:hover {
+            color: black;
+        }
+        header li {
+            margin-right: 10px;
+        }
+        header img {
+            margin-right: 10px;
+        }
+        @media (max-width: 768px) {
+            header {
+                flex-wrap: wrap;
+                height: auto;
+            }
+            header ul {
+                flex-wrap: nowrap;
+            }
+            header a {
+                margin-left: 10px;
+            }
+        }
+        @media (max-width: 480px) {
+            header {
+                padding: 10px;
+            }
+            header a {
+                font-size: 14px;
+                margin-left: 5px;
+            }
+        }
+        nav{
+            height: 200px;
+            width: 100%;
+            text-align: center;
+        }
+        nav input{
+            height: 50px;
+            width: 800px;
+            border-radius: 20px;
+            border: 1px solid grey;
+            padding-left: 10px;
+        }
+        .input-container {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            max-width: 500px; /* Adjust as needed */
+        }
+        .input-container input {
+            width: 100%;
+            padding: 10px 40px 10px 10px; /* Adjust padding for the image */
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        .input-container img {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 24px; /* Adjust size as needed */
+            height: 24px; /* Adjust size as needed */
+            cursor: pointer; /* Optional: Changes cursor to pointer */
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            
+        }
+        nav li {
+            display: flex;
+            align-items: center;
+          
+            margin-right: 20px;
+        }
+        nav li img {
+            margin-right: 10px; /* Khoảng cách giữa ảnh và văn bản */
+            width: 24px; /* Đặt kích thước phù hợp cho ảnh */
+            height: 24px;
+        }
+        nav li a {
+            text-decoration: none;
+            color: grey;
+        }
+        nav li a b {
+            font-weight: bold;
+        }
+         /* Media queries */
+         @media (max-width: 768px) {
+            li img {
+                width: 20px; /* Giảm kích thước ảnh cho màn hình nhỏ hơn */
+                height: 20px;
+            }
+        }
+        @media (max-width: 480px) {
+            li img {
+                width: 16px; /* Giảm kích thước ảnh cho màn hình nhỏ hơn */
+                height: 16px;
+            }
+            li {
+                margin-bottom: 5px; /* Giảm khoảng cách giữa các li cho màn hình nhỏ hơn */
+            }
+        }
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+        .hotline {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 20px;
+    /* max-width: 1200px; */
+    background-color: pink;
+}
+
+.hotline li {
+    list-style: none;
+    flex: 1 1 calc(25% - 20px);
+    box-sizing: border-box;
+    margin: 10px;
+}
+#c{
+    width: 75px;
+    border-radius: 5px;
+}
+.hotline a {
+    text-decoration: none;
+    color: black;
+    font-size: 14px;
+    margin-top: 15px;
+}
+
+.hotline h3 {
+    margin-top: 0;
+    font-size: 16px;
+}
+.hotline input{
+    border-radius: 5px;
+    width: 200px;
+    height: 30px;
+    padding-left: 10px;
+    border: 1px solid grey;
+}
+.hotline button {
+    background-color: rgb(254, 115, 138);
+    height: 30px;
+    width: 120px;
+    border-radius: 10px;
+    border: 1px solid grey;
+    
+}
+
+.lienhe a img,
+.thanhtoan a img {
+    width: 30px;
+    height: auto;
+    margin-right: 10px;
+}
+#c{
+    width: 75px;
+    border-radius: 5px;
+}
+.hotline img:hover{
+    transform: scale(1.2);
+    transition: all 0.3s ease;
+
+}
+.hotline a:hover{
+    color: rgb(254, 115, 138);
+}
+.hotline button:hover{
+    transform: scale(1.2);
+    transition: all 0.3s ease;
+}
+@media (max-width: 768px) {
+    .last-container li,
+    .hotline li {
+        flex: 1 1 calc(50% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .last-container li,
+    .hotline li {
+        flex: 1 1 100%;
+    }
+
+    .lienhe a img,
+    .thanhtoan a img {
+        width: 50px;
+    }
+}
+.menu-bar a{
+    text-decoration: none;
+    color: grey;
+    margin-top: 10px;
+}
+.menu-bar {
+    background-color: pink;
+    width: 100%;
+    height: 40px;
+    display: inline-flex;
+    padding-left: 10px;
+}
+.map{
+  
+    width: 100%;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <img src="/image/kwni4bh8.png" style="width: 200px;" alt="">
+            <ul>
+                <li><a id="yc" href="#">Gửi yêu cầu </a></li>
+                <li> | </li>
+                <li><a href="#">Đăng nhập</a></li>
+            </ul>
+        </div>
+    </header>
+    <div class="menu-bar">
+        <a href="Trang chu.html">Trang chủ ></a>
+        <a href="#"> Hệ thống khách hàng</a>
+    </div>
+    <nav><br><br>
+        <h2>Xin chào! Chúng tôi có thể giúp được gì cho bạn?</h2><br>
+        <div class="input-container">
+            <input type="text" placeholder="Nhập từ khoá để tìm kiếm sản phẩm, thương hiệu bạn muốn...">
+            <img src="/image/search (1).png" alt="Search">
+        </div>
+    <div>
+        <ul>
+            <li>
+                <img src="/image/icons8-questions-100.png" alt="">
+                <a href=""><b>0337083294</b> (Khiếu nại, góp ý)</a>
+            </li>
+            <li>
+                <img src="/image/icons8-ringer-volume-50.png" alt="">
+                <a href=""><b>0908888888</b> (Tư vấn)</a>
+            </li>
+            <li>
+                <img src="/image/icons8-chat-48.png" alt="">
+                <a href=""><b>Nhắn tin</b></a>
+            </li>
+        </ul>
+    </div>
+    </nav>
+    <br>
+    
+    <h1 style="padding-left: 10px;">Địa chỉ </h1>
+   
+    <iframe src="https://maps.app.goo.gl/H3dcSgQpFdYXzEjb8" class="map"></iframe>
+    <!-- <script>
+        function initMap() {
+          
+            var myLatLng = {lat: 10.7769, lng: 106.7009};
+
+            
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 14,
+                center: myLatLng 
+            });
+
+          
+            var marker = new google.maps.Marker({
+                position: myLatLng, 
+                map: map, 
+                title: 'Your Location' 
+            });
+        }
+    </script> -->
+  <form action="last" style="background-color: white;">
+        <div class="line" style="background-color: pink; width: 100%; height: 5px;"></div>
+       
+        <br>
+        <div class="hotline">
+            <li>
+                <h3>HỖ TRỢ KHÁCH HÀNG</h3><br>
+                <a href="#" style="color: red;">Hot line: <b>0337083294</b></a><br>
+                <a href="#">(miễn phí, 08-22h kể cả T7,CN)</a><br>
+                <a href="#">Các câu hỏi thường gặp</a><br>
+                <a href="#">Gửi yêu cầu hỗ trợ</a><br>
+                <a href="#">Hướng dẫn đặt hàng</a><br>
+                <a href="#">Phương thức vận chuyển</a><br>
+                <a href="#">Chính sách đổi trả</a><br>
+            </li>
+            <li class="g">
+                <h3>VỀ CHÚNG TÔI</h3><br>
+                <a href="#">Giới thiệu</a><br>
+                <a href="#">Tuyển dụng</a><br>
+                <a href="#">Chính sách bảo mật</a><br>
+                <a href="#">Điều khoản sử dụng</a><br>
+                <a href="#">Liên hệ</a><br>
+                <a href="#">Tư vấn khách hàng</a>
+            </li>
+            <li>
+                <h3>HỢP TÁC VÀ LIÊN KẾT</h3><br>
+                <a href="http://127.0.0.1:5500/website/Trang%20chu.html#">http://127.0.0.1:5500/website/Trang%20chu.html#</a><br>
+                <a href="#">Cẩm nang</a><br>
+                <div class="lienhe">
+                    <a href="https://www.facebook.com/nguyen.nhi.nho.1306/"><img src="/image/facebook.png" alt=""></a>
+                    <a href=""><img src="/image/youtube.png" alt=""></a>
+                    <a href="https://www.instagram.com/13th06.ng/"><img src="/image/instagram.png" alt=""></a>
+                </div><br>
+                <h3>THANH TOÁN</h3>
+                <div class="thanhtoan">
+                    <a href="#"><img src="/image/visa.png" alt=""></a>
+                    <a href="#"><img src="/image/atm-card.png" alt=""></a>
+                </div>    
+            </li>
+            <li>
+                <h3>CẬP NHẬT THÔNG TIN KHUYẾN MÃI</h3><br>  
+                <input type="email" placeholder="Nhập email của bạn">
+                <button id="c">Cập nhật</button><br><br><br><br>
+                <br>    <h3>KHIẾU NẠI GÓP Ý</h3><br>
+                <button>0337083294</button><br>
+            </li>
+        </div>
+    </form>
+    <!-- <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+    </script> -->
+</body>
+</html>

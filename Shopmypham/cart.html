@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+     body {
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            width: 100%;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        header div {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+        header a {
+            text-decoration: none;
+            color: grey;
+            line-height: 40px;
+            margin-left: 20px;
+        }
+        header ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+        header a:hover {
+            color: black;
+        }
+        header li {
+            margin-right: 10px;
+        }
+        header img {
+            margin-right: 10px;
+        }
+        @media (max-width: 768px) {
+            header {
+                flex-wrap: wrap;
+                height: auto;
+            }
+            header ul {
+                flex-wrap: nowrap;
+            }
+            header a {
+                margin-left: 10px;
+            }
+        }
+        @media (max-width: 480px) {
+            header {
+                padding: 10px;
+            }
+            header a {
+                font-size: 14px;
+                margin-left: 5px;
+            }
+        }
+        .hotline {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 20px;
+    /* max-width: 1200px; */
+    background-color: pink;
+}
+
+.hotline li {
+    list-style: none;
+    flex: 1 1 calc(25% - 20px);
+    box-sizing: border-box;
+    margin: 10px;
+}
+#c{
+    width: 75px;
+    border-radius: 5px;
+}
+.hotline a {
+    text-decoration: none;
+    color: black;
+    font-size: 14px;
+    margin-top: 15px;
+}
+
+.hotline h3 {
+    margin-top: 0;
+    font-size: 16px;
+}
+.hotline input{
+    border-radius: 5px;
+    width: 200px;
+    height: 30px;
+    padding-left: 10px;
+    border: 1px solid grey;
+}
+.hotline button {
+    background-color: rgb(254, 115, 138);
+    height: 30px;
+    width: 120px;
+    border-radius: 10px;
+    border: 1px solid grey;
+    
+}
+
+.lienhe a img,
+.thanhtoan a img {
+    width: 30px;
+    height: auto;
+    margin-right: 10px;
+}
+#c{
+    width: 75px;
+    border-radius: 5px;
+}
+.hotline img:hover{
+    transform: scale(1.2);
+    transition: all 0.3s ease;
+
+}
+.hotline a:hover{
+    color: rgb(254, 115, 138);
+}
+.hotline button:hover{
+    transform: scale(1.2);
+    transition: all 0.3s ease;
+}
+@media (max-width: 768px) {
+    .last-container li,
+    .hotline li {
+        flex: 1 1 calc(50% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .last-container li,
+    .hotline li {
+        flex: 1 1 100%;
+    }
+
+    .lienhe a img,
+    .thanhtoan a img {
+        width: 50px;
+    }
+}
+.menu-bar a{
+    text-decoration: none;
+    color: grey;
+    margin-top: 10px;
+}
+.menu-bar {
+    background-color: pink;
+    width: 100%;
+    height: 40px;
+    display: inline-flex;
+    padding-left: 10px;
+}
+ /* CSS để trang giỏ hàng trông đẹp hơn */
+ * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        
+    }
+    
+    /* Body style */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        padding: 20px;
+        
+    }
+    
+    /* Container style */
+    .container {
+        max-width: 800px;
+        margin: auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+       
+    }
+    
+    /* Header style */
+    h2 {
+        color: #333;
+        margin-bottom: 20px;
+    }
+    
+    /* Table style */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+    
+    th, td {
+        padding: 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+        
+    }
+    
+    th {
+        background-color: #f2f2f2;
+        font-weight: normal;
+    }
+    
+    /* Checkout button style */
+    .checkout-btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    
+    .checkout-btn:hover {
+        background-color: #45a049;
+    }
+</style>
+<body>
+    <header>
+        <div>
+            <img src="/image/kwni4bh8.png" style="width: 200px;" alt="">
+            <ul>
+                <li><a id="yc" href="#">Gửi yêu cầu </a></li>
+                <li> | </li>
+                <li><a href="#">Đăng nhập</a></li>
+            </ul>
+        </div>
+    </header>
+    <div class="menu-bar">
+        <a href="Trang chu.html">Trang chủ ></a>
+        <a href="#"> Giỏ hàng</a>
+    </div><br><br><br>
+    <div class="container">
+        <h2>Giỏ hàng của bạn</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Ảnh sản phẩm</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Đơn giá</th>
+                    <th>Số lượng</th>
+                    <th>Thành tiền</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Ví dụ các sản phẩm trong giỏ hàng -->
+                <tr>
+                    <td><img src="/image/dhc.jpg" alt="Sản phẩm 1" style="width: 80px;"></td>
+                    <td>Thực phẩm chức năng</td>
+                    <td>170.000đ</td>
+                    <td>1</td>
+                    <td>170.000đ</td>
+                    <td><button onclick="removeFromCart(1)">Xóa</button></td>
+                </tr>
+                <!-- Các dòng sản phẩm khác tương tự -->
+            </tbody>
+        </table>
+        <div style="text-align: right;">
+            <h3>Tổng tiền: 170.000đ</h3>
+            <a href="/checkout" class="checkout-btn">Thanh toán</a>
+        </div>
+    </div>
+    
+    <!-- <form action="last" style="background-color: white;">
+        <div class="line" style="background-color: pink; width: 100%; height: 5px;"></div>
+       
+        <br>
+        <div class="hotline">
+            <li>
+                <h3>HỖ TRỢ KHÁCH HÀNG</h3><br>
+                <a href="#" style="color: red;">Hot line: <b>0337083294</b></a><br>
+                <a href="#">(miễn phí, 08-22h kể cả T7,CN)</a><br>
+                <a href="#">Các câu hỏi thường gặp</a><br>
+                <a href="#">Gửi yêu cầu hỗ trợ</a><br>
+                <a href="#">Hướng dẫn đặt hàng</a><br>
+                <a href="#">Phương thức vận chuyển</a><br>
+                <a href="#">Chính sách đổi trả</a><br>
+            </li>
+            <li class="g">
+                <h3>VỀ CHÚNG TÔI</h3><br>
+                <a href="#">Giới thiệu</a><br>
+                <a href="#">Tuyển dụng</a><br>
+                <a href="#">Chính sách bảo mật</a><br>
+                <a href="#">Điều khoản sử dụng</a><br>
+                <a href="#">Liên hệ</a><br>
+                <a href="#">Tư vấn khách hàng</a>
+            </li>
+            <li>
+                <h3>HỢP TÁC VÀ LIÊN KẾT</h3><br>
+                <a href="http://127.0.0.1:5500/website/Trang%20chu.html#">http://127.0.0.1:5500/website/Trang%20chu.html#</a><br>
+                <a href="#">Cẩm nang</a><br>
+                <div class="lienhe">
+                    <a href="https://www.facebook.com/nguyen.nhi.nho.1306/"><img src="/image/facebook.png" alt=""></a>
+                    <a href=""><img src="/image/youtube.png" alt=""></a>
+                    <a href="https://www.instagram.com/13th06.ng/"><img src="/image/instagram.png" alt=""></a>
+                </div><br>
+                <h3>THANH TOÁN</h3>
+                <div class="thanhtoan">
+                    <a href="#"><img src="/image/visa.png" alt=""></a>
+                    <a href="#"><img src="/image/atm-card.png" alt=""></a>
+                </div>    
+            </li>
+            <li>
+                <h3>CẬP NHẬT THÔNG TIN KHUYẾN MÃI</h3><br>  
+                <input type="email" placeholder="Nhập email của bạn">
+                <button id="c">Cập nhật</button><br><br><br><br>
+                <br>    <h3>KHIẾU NẠI GÓP Ý</h3><br>
+                <button>0337083294</button><br>
+            </li>
+        </div>
+    </form>
+    <td>Thực phẩm chức năng</td>
+                    <td>170.000đ</td>
+                    <td>1</td>
+                    <td>170.000đ</td>
+                    <td><button onclick="removeFromCart(1)">Xóa</button></td>
+                </tr>
+                <!-- Các dòng sản phẩm khác tương tự -->
+           
+    
+    <br><br><form action="last" style="background-color: white;">
+        <div class="line" style="background-color: pink; width: 100%; height: 5px;"></div>
+       
+        <br>
+        <div class="hotline">
+            <li>
+                <h3>HỖ TRỢ KHÁCH HÀNG</h3><br>
+                <a href="#" style="color: red;">Hot line: <b>0337083294</b></a><br>
+                <a href="#">(miễn phí, 08-22h kể cả T7,CN)</a><br>
+                <a href="#">Các câu hỏi thường gặp</a><br>
+                <a href="#">Gửi yêu cầu hỗ trợ</a><br>
+                <a href="#">Hướng dẫn đặt hàng</a><br>
+                <a href="#">Phương thức vận chuyển</a><br>
+                <a href="#">Chính sách đổi trả</a><br>
+            </li>
+            <li class="g">
+                <h3>VỀ CHÚNG TÔI</h3><br>
+                <a href="#">Giới thiệu</a><br>
+                <a href="#">Tuyển dụng</a><br>
+                <a href="#">Chính sách bảo mật</a><br>
+                <a href="#">Điều khoản sử dụng</a><br>
+                <a href="#">Liên hệ</a><br>
+                <a href="#">Tư vấn khách hàng</a>
+            </li>
+            <li>
+                <h3>HỢP TÁC VÀ LIÊN KẾT</h3><br>
+                <a href="http://127.0.0.1:5500/website/Trang%20chu.html#">http://127.0.0.1:5500/website/Trang%20chu.html#</a><br>
+                <a href="#">Cẩm nang</a><br>
+                <div class="lienhe">
+                    <a href="https://www.facebook.com/nguyen.nhi.nho.1306/"><img src="/image/facebook.png" alt=""></a>
+                    <a href=""><img src="/image/youtube.png" alt=""></a>
+                    <a href="https://www.instagram.com/13th06.ng/"><img src="/image/instagram.png" alt=""></a>
+                </div><br>
+                <h3>THANH TOÁN</h3>
+                <div class="thanhtoan">
+                    <a href="#"><img src="/image/visa.png" alt=""></a>
+                    <a href="#"><img src="/image/atm-card.png" alt=""></a>
+                </div>    
+            </li>
+            <li>
+                <h3>CẬP NHẬT THÔNG TIN KHUYẾN MÃI</h3><br>  
+                <input type="email" placeholder="Nhập email của bạn">
+                <button id="c">Cập nhật</button><br><br><br><br>
+                <br>    <h3>KHIẾU NẠI GÓP Ý</h3><br>
+                <button>0337083294</button><br>
+            </li>
+        </div>
+    </form>
+</body>
+</html>

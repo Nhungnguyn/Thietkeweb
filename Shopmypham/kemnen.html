@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+        <html lang="vi">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Chi tiết sản phẩm</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 0;
+                    padding: 0;
+                    background-color: #f4f4f4;
+                }
+                .container {
+                    width: 100%;
+                    margin: 0 auto;
+                    padding: 20px;
+                    background-color: #fff;
+                    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+                }
+                .product {
+                    display: flex;
+                    justify-content: center;
+                    align-items: flex-start;
+                    margin-bottom: 40px;
+                    padding-bottom: 20px;
+                    border-bottom: 1px solid #eee;
+                    
+                }
+                .product-images {
+                    flex: 0 0 40%;
+                    text-align: center;
+                    position: relative;
+                    
+                }
+                .product-images img {
+                    width: 60%;
+                    max-width: 50%;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                    
+                }
+                .thumbnail-container-wrapper {
+                    position: relative;
+                    display: flex;
+                    align-items: right;
+                    justify-content: right;
+                    overflow: hidden;
+                    margin-top: 20px;
+                }
+                .thumbnail-container {
+                    display: flex;
+                    overflow: hidden;
+                    width: 100%; /* Độ rộng của thumbnail container */
+                }
+
+                .thumbnail-container img {
+                    width: 90px; /* Kích thước của ảnh nhỏ */
+                    margin-right: 7px; /* Khoảng cách giữa các ảnh */
+                    cursor: pointer;
+                }
+
+                .arrow {
+                    cursor: pointer;
+                    font-size: 24px;
+                    color: #888;
+                    user-select: none;
+                    margin: 0 10px;
+                    align-self: flex-end; /* Đưa các nút tua về dưới cùng */
+                }
+
+                .arrow:hover {
+                    color: #e74c3c;
+                }
+                .product-info {
+                    flex: 0 0 50%;
+                    padding-left: 30px;
+                }
+                .product-title {
+                    font-size: 30px;
+                    margin: 10px 0;
+                }
+                .product-description {
+                    font-size: 16px;
+                    line-height: 1.6;
+                    margin-bottom: 20px;
+                }
+                .product-rating {
+                    margin-bottom: 10px;
+                    font-size: 30px;
+                    color: #f03a5b;
+                }
+                .related-products {
+                    margin-top: 40px;
+                    margin-bottom: 40px;
+                }
+                .related-products h3 {
+                    font-size: 20px;
+                    margin-bottom: 20px;
+                }
+                .related-products .product {
+                    width: calc(20% - 10px); /* Điều chỉnh chiều rộng và khoảng cách giữa các khối */
+                    margin: 0 10px; /* Khoảng cách giữa các sản phẩm */
+                    display: inline-block; /* Hiển thị cùng một hàng */
+                    vertical-align: top; /* Canh lề trên cùng */
+                }
+                .related-products img {
+                    width: 100%;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                }
+                .user-reviews {
+                    background-color: #f9f9f9;
+                    padding: 20px;
+                    border-radius: 8px;
+                    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+                    margin-bottom: 40px;
+                }
+                .user-reviews h3 {
+                    font-size: 20px;
+                    margin-bottom: 20px;
+                    color: #333;
+                    border-bottom: 2px solid #e74c3c;
+                    padding-bottom: 10px;
+                }
+                .user-review {
+                    border-bottom: 1px solid #ccc;
+                    padding-bottom: 10px;
+                    margin-bottom: 10px;
+                }
+                .user-review .review-user {
+                    font-weight: bold;
+                    margin-bottom: 5px;
+                }
+                .user-review .review-date {
+                    font-size: 12px;
+                    color: #777;
+                }
+                .star-rating {
+                    color: #f39c12;
+                    font-size: 18px;
+                    margin-bottom: 5px;
+                }
+                .review-summary {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                    background-color: #fff;
+                    border-radius: 8px;
+                    padding: 20px;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                }
+                .average-rating {
+                    text-align: center;
+                    flex: 0 0 30%;
+                }
+                .average-rating .txt_numer {
+                    font-size: 48px;
+                    color: #e74c3c;
+                    font-weight: bold;
+                }
+                .rating-breakdown {
+                    flex: 0 0 65%;
+                }
+                .rating-bar {
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 5px;
+                }
+                .rating-bar span {
+                    display: inline-block;
+                    width: 20%;
+                }
+                .rating-bar .bar {
+                    width: 60%;
+                    background-color: #e0e0e0;
+                    height: 10px;
+                    margin: 0 10px;
+                    position: relative;
+                    border-radius: 5px;
+                }
+                .rating-bar .bar span {
+                    display: block;
+                    height: 100%;
+                    background-color: #f39c12;
+                    border-radius: 5px;
+                }
+                .rating-bar .count {
+                    width: 20%;
+                    text-align: right;
+                }
+                @media (max-width: 768px) {
+                    .product {
+                        flex-direction: column;
+                        align-items: center;
+                    }
+                    .product-info {
+                        padding-left: 0;
+                        margin-top: 20px;
+                        text-align: center;
+                    }
+                    .product-images {
+                        margin-bottom: 20px;
+                        flex: 0 0 100%;
+                    }
+                    .related-products .product {
+                        width: 48%;
+                    }
+                }
+                @media (max-width: 480px) {
+                    .related-products .product {
+                        width: 100%;
+                    }
+                }
+                .price-new {
+                    color: orange;
+                    font-size: 30px;
+                    font-weight: bold;
+                
+                    margin-bottom: 5px;
+                }
+                .price-old {
+                    color: #888;
+                    font-size: 20px;
+                    text-decoration: line-through;
+                    margin-left: 10px;
+                }
+                button {
+                    background-color: transparent;
+                    color: #e74c3c;
+                    border: 2px solid #e74c3c;
+                    padding: 10px 20px;
+                    font-size: 16px;
+                    font-weight: bold;
+                    cursor: pointer;
+                    transition: background-color 0.3s, color 0.3s;
+                    border-radius: 5px;
+                    margin-right: 20px;
+                    border-radius: 20px;
+                }
+                button:hover {
+                    background-color: #e74c3c;
+                    color: #fff;
+                }
+                button.cart {
+                    background-color: transparent;
+                    color: #288f37;
+                    border: 2px solid #288f37;
+                }
+                button.cart:hover {
+                    background-color: #288f37;
+                    color: #fff;
+                }
+                .classification {
+                    position: absolute;
+                    background-color: rgba(0, 0, 0, 0.8);
+                    color: #fff;
+                    padding: 5px 10px;
+                    border-radius: 5px;
+                    z-index: 1000;
+                    pointer-events: none;
+                    display: none;
+                }
+                    /* Định dạng khung chứa các coupon */
+                    .coupon_container {
+        display: flex;
+        overflow-x: auto; /* Cho phép dấu trượt ngang */
+        gap: 20px; /* Khoảng cách giữa các khối coupon */
+        padding-bottom: 20px; /* Khoảng cách dưới cùng */
+    }
+    .coupon_item {
+        flex: 0 0 auto; /* Không co dãn khối coupon */
+        min-width: 200px; /* Độ rộng tối thiểu của mỗi khối */
+        border: 1px solid #fa87e9;
+        border-radius: 5px;
+        padding: 10px;
+        background-color: #ffffff;
+        clip-path: polygon(0% 0%, 100% 0%, 100% 80%, 80% 100%, 0% 100%);
+        position: relative;
+    }
+
+                @media (max-width: 768px) {
+                    .coupon_item {
+                        flex: 1 1 calc(50% - 20px); /* Chiếm 1/2 chiều rộng container trên màn hình nhỏ hơn */
+                    }
+                }
+
+                @media (max-width: 480px) {
+                    .coupon_item {
+                        flex: 1 1 100%; /* Chiếm toàn bộ chiều rộng container trên màn hình rất nhỏ */
+                    }
+                }
+
+                
+                .copy-message {
+                    display: none;
+                    position: absolute;
+                    bottom: 10px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background-color: #28a745;
+                    color: #fff;
+                    padding: 5px 10px;
+                    border-radius: 5px;
+                    font-size: 1rem;
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+                }
+
+                .coupon_body {
+                    padding-bottom: 10px;
+                }
+
+                .coupon_head {
+                    margin-bottom: 10px;
+                }
+
+                .coupon_title {
+                    font-size: 1.5rem;
+                    margin-bottom: 5px;
+                    color: #333;
+                }
+
+                .coupon_desc {
+                    color: #666;
+                }
+
+                /* Nút Sao chép mã */
+                .coupon_copy {
+                    background-color: #f6347e;
+                    color: #fff;
+                    border-radius: 15px;
+                    padding: 5px 15px;
+                    cursor: pointer;
+                    text-align: justify;
+                    margin-left: 15px  ;
+                }
+
+                .coupon_copy:hover {
+                    background-color: #ef4d8b;
+                }
+
+                .coupon_info {
+                    display: none;
+                    margin-top: 10px;
+                    padding-top: 10px;
+                    border-top: 1px dashed #ccc;
+                    color: #777;
+                    font-size: 0.9rem;
+                }
+
+                /* Hiển thị thông tin chi tiết khi được mở rộng */
+                .coupon_info_toggle.active + .coupon_info {
+                    display: block;
+                }
+                .quantity {
+                display: flex;
+                align-items: center;
+                margin-top: 10px;
+            
+            }
+
+            .quantity label {
+                margin-right: 10px;
+                font-weight: bold;
+            }
+
+.quantity-input {
+    width: 50px;
+    padding: 8px;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+}
+
+.quantity-input:focus {
+    outline: none;
+
+}
+.flashsale-container {
+overflow-x: auto; 
+white-space: nowrap; 
+animation: scrollList 10s linear infinite; 
+
+}
+
+
+.flashsale-list {
+list-style-type: none;
+padding: 0;
+margin: 0;
+display: inline-block; 
+
+}
+
+
+.flashsale {
+width: 250px;
+border: 1px solid #ddd;
+padding: 10px;
+
+display: inline-block; 
+vertical-align: top; 
+background-color: rgb(237, 235, 235);
+font-size: 14px;
+}
+
+
+.flashsale img {
+width: 100%;
+height: auto;
+margin-right: 10px;
+
+}
+
+.flashsale img:hover{
+transform: scale(1.2);
+transition: all 0.3s ease;
+}
+.product h3 {
+margin-top: 0;
+}
+.product img:hover{
+transform: translateY(-10px);
+transition: all 0.3s ease;
+}
+
+.flash-sale-countdown {
+display: flex;
+color: white;
+}
+.countdown-item {
+        margin-right: 10px;
+        background-color: #333;
+        color: white;
+        border-radius: 5px;
+    }
+
+    .countdown-item span {
+        display: block;
+        font-size: 24px;
+        text-align: center;
+        color: inherit;
+    }
+    .flashsalee{
+        background-color: rgb(255, 140, 0);
+        height: 470px;
+        border-radius: 10px;
+    } 
+    .progress-container {
+        position: relative;
+        width: 100%;
+        height: 12px;
+        background-color: #e0e0e0;
+        border-radius: 15px;
+        overflow: hidden;
+        margin-bottom: 20px;
+    }
+
+    .progress-bar {
+        height: 100%;
+        background-color: orange;
+        border-radius: 15px 15px 15px 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        position: relative;
+    }
+
+    .progress-text {
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        color: #000;
+        font-weight: bold;
+    }
+    .hotline {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: pink;
+        }
+        .hotline li {
+            list-style: none;
+            flex: 1 1 calc(25% - 20px);
+            box-sizing: border-box;
+            margin: 10px;
+        }
+        #c{
+            #c{
+            width: 85px;
+            border-radius: 5px;
+            color: black;
+            font-size: 10px;
+        }
+        }
+        .hotline a {
+            text-decoration: none;
+            color: black;
+            font-size: 14px;
+            margin-top: 15px;
+        }
+        .hotline h3 {
+            margin-top: 0;
+            font-size: 16px;
+        }
+        .hotline input{
+            border-radius: 5px;
+            width: 200px;
+            height: 30px;
+            padding-left: 10px;
+            border: 1px solid grey;
+        }
+        .hotline button {
+            background-color: rgb(254, 115, 138);
+            height: 30px;
+            width: 120px;
+            border-radius: 10px;
+            border: 1px solid grey;
+        }
+        .lienhe a img,
+        .thanhtoan a img {
+            width: 30px;
+            height: auto;
+            margin-right: 10px;
+        }
+        .hotline img:hover{
+            transform: scale(1.2);
+            transition: all 0.3s ease;
+        }
+        .hotline a:hover{
+            color: rgb(254, 115, 138);
+        }
+        .hotline button:hover{
+            transform: scale(1.2);
+            transition: all 0.3s ease;
+        }
+        @media (max-width: 768px) {
+            .last-container li,
+            .hotline li {
+                flex: 1 1 calc(50% - 20px);
+            }
+        }
+        @media (max-width: 480px) {
+            .last-container li,
+            .hotline li {
+                flex: 1 1 100%;
+            }
+            .lienhe a img,
+            .thanhtoan a img {
+                width: 50px;
+            }
+        }
+        header {
+            width: 100%;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        header div {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+        header a {
+            text-decoration: none;
+            color: grey;
+            line-height: 40px;
+            margin-left: 20px;
+        }
+        header ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+        header a:hover {
+            color: black;
+        }
+        header li {
+            margin-right: 10px;
+        }
+        header img {
+            margin-right: 10px;
+        }
+        @media (max-width: 768px) {
+            header {
+                flex-wrap: wrap;
+                height: auto;
+            }
+            header ul {
+                flex-wrap: nowrap;
+            }
+            header a {
+                margin-left: 10px;
+            }
+        }
+        @media (max-width: 480px) {
+            header {
+                padding: 10px;
+            }
+            header a {
+                font-size: 14px;
+                margin-left: 5px;
+            }
+        }
+        .menu-bar a{
+            text-decoration: none;
+            color: grey;
+            margin-top: 10px;
+        }
+        .menu-bar {
+            background-color: pink;
+            width: 100%;
+            height: 40px;
+            display: inline-flex;
+            padding-left: 10px;
+        }
+            </style>
+        
+        </head>
+        <body>
+            <header>
+                <div>
+                    <img src="/image/kwni4bh8.png" style="width: 200px;" alt="">
+                    <ul>
+                        <li><a id="yc" href="#">Gửi yêu cầu </a></li>
+                        <li> | </li>
+                        <li><a href="#">Đăng nhập</a></li>
+                       
+                    </ul>
+                </div>
+            </header>
+            <div class="menu-bar">
+                <a href="Trang chu.html">Trang chủ ></a>
+                <a href="#"> Chi tiết sản phẩm</a>
+            </div>
+
+       <!-- Sản phẩm chi tiết -->
+    <div class="product">
+        <div class="product-images">
+            <img id="mainImage" src="/image/OIP (1).jpg" alt="Hình ảnh sản phẩm lớn">
+            <div class="thumbnail-container-wrapper">
+                <div class="arrow left-arrow" id="left-arrow">&#8249;</div>
+                <div class="thumbnail-container" id="thumbnail-container">
+                    <img src="/image/nuoc-hoa-Chanel-No-5-Eau-Premiere-Eau-de-Parfum-nu-NHC9-1.jpg" alt="Gucci Flora" onclick="changeImage('image/GucciFlora.jpg')">
+                    <img src="/image/OIP (7).jpg" alt="D&G Velvet Cypress" onclick="changeImage('image/D&GVelvetCypress.jpg')">
+                    <img src="/image/R (1).jpg" alt="Dior J’adore" onclick="changeImage('image/DiorJ’adore.jpg')">
+                    <img src="/image/OIP (8).jpg" alt="My Burberry" onclick="changeImage('image/MyBurberry.jpg')">
+                    <img src="/image/Nuoc-hoa-Jo-Malone-London-154-Cologne-100ml-Unisex-NHJM6-1-1.jpg" alt="Versace Bright Crystal" onclick="changeImage('image/VersaceBrightCrystal.jpg')">
+                    <img src="/image/nuoc-hoa-Chanel-No-5-Eau-Premiere-Eau-de-Parfum-nu-NHC9-1.jpg" alt="Yves Saint Laurent Mon Paris Intensément EDP" onclick="changeImage('image/YvesSaintLaurentMonParisIntensémentEDP.jpg')">
+                </div>
+                <div class="arrow right-arrow" id="right-arrow">&#8250;</div>
+            </div>            
+            
+        </div>
+            <div class="product-info">
+                <h1 class="product-title">Kem nền</h1>
+                <b class="price-new">320.000đ</b>
+                <del class="price-old">355.000vnđ</del>
+                <br>(Tiết kiệm 35.000đ)  <br><br>
+                <div class="product-rating"> Đánh giá: 
+                <span>4.5/ 5⭐</span>
+                </div>
+                <hr>
+                <p>Kem nền hỗ trợ cho những cô gái làm đẹp, có một lớp nền mềm mịn, dịu nhẹ, lâu trôi</p>
+                    <div class="quantity">
+                        <label for="quantity">Số lượng:</label>
+                        <input type="number" id="quantity" name="quantity" min="1" value="1" aria-label="quantity" class="quantity-input">
+                    </div>
+                    <br>
+                    <a href="giohang.html">
+                <button class="cart">Thêm vào giỏ hàng</button>
+            </a>
+                <button>Mua ngay</button>
+            </div>
+    </div>
+            
+            
+            <div class="coupon_container">
+                <div class="coupon_item">
+                    <div class="coupon_body">
+                        <div class="coupon_head">
+                            <h3 class="coupon_title">NHẬP MÃ: SUN</h3>
+                            <div class="coupon_desc">Mã giảm THÊM 10% cho TỐI ĐA 150K CHO ĐƠN TỪ 499K áp dụng với một số sản phẩm nhất định.</div>
+                        </div>
+                        <div class="d-flex align-items-center flex-wrap justify-content-between">
+                            <button class="btn btn-main btn-sm coupon_copy" data-ega-coupon="SUN">
+                                <span>Sao chép mã</span>
+                            </button>
+                            <a href="">Điều kiện</a>
+                            <div class="coupon_info">
+                                - Mã giảm THÊM 10% cho TỐI ĐA 150K CHO ĐƠN TỪ 499K áp dụng với một số sản phẩm nhất định.
+                                <br>
+                                - Áp dụng từ 18.06 - 02.07.2024
+                            </div>
+                        </div>
+                    </div>
+                    <div class="copy-message" id="copy-message-SUN">Đã sao chép mã!</div>
+                </div>
+            
+                <div class="coupon_item">
+                    <div class="coupon_body">
+                        <div class="coupon_head">
+                            <h3 class="coupon_title">NHẬP MÃ: CLOUD</h3>
+                            <div class="coupon_desc">Mã giảm THÊM 12% tối đa 68K CHO ĐƠN HÀNG TỪ 250K cho một số sản phẩm nhất định.</div>
+                        </div>
+                        <div class="d-flex align-items-center flex-wrap justify-content-between">
+                            <button class="btn btn-main btn-sm coupon_copy" data-ega-coupon="CLOUD">
+                                <span>Sao chép mã</span>
+                            </button>
+                            <a href="">Điều kiện</a>
+                            <div class="coupon_info">
+                                - Mã giảm THÊM 12% tối đa 68K CHO ĐƠN HÀNG TỪ 250K cho một số sản phẩm nhất định.
+                                <br>
+                                - Áp dụng duy nhất ngày 25.06.2024
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="coupon_item">
+                    <div class="coupon_body">
+                        <div class="coupon_head">
+                            <h3 class="coupon_title">NHẬP MÃ: BANMOI</h3>
+                            <div class="coupon_desc">Mã giảm THÊM 12% cho ĐƠN HÀNG ĐẦU TIÊN (sau khi đăng ký tài khoản) áp dụng với một số sản phẩm nhất định</div>
+                        </div>
+                        <div class="d-flex align-items-center flex-wrap justify-content-between">
+                            <button class="btn btn-main btn-sm coupon_copy" data-ega-coupon="BANMOI">
+                                <span>Sao chép mã</span>
+                            </button>
+                            <a href="">Điều kiện</a>
+                            <div class="coupon_info">
+                                - Mã giảm THÊM 12% cho ĐƠN HÀNG ĐẦU TIÊN áp dụng với một số sản phẩm nhất định
+                                <br>
+                                - Không áp dụng chung với các voucher giảm giá khác.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <span class="count">1</span>    
+        </div>
+        <div class="rating-bar">
+            <span>1 sao</span>
+            <div class="bar">
+                <span style="width: 2.2%;"></span>
+            </div>
+            <span class="count">1</span>
+        </div>
+    </div>
+</div>
+<div class="user-review">
+    <p class="review-user">Nguyễn Văn A</p>
+    <p class="review-date">Ngày 1 tháng 1, 2024</p>
+    <div class="star-rating">⭐⭐⭐⭐⭐</div>
+    <p>Thực phẩm này rất tốt tôi sẽ mua lại nó</p>
+    <img style="max-width: 100px; "; src="/image/R (1).jpg" alt="">
+</div>
+<div class="user-review">
+    <p class="review-user">Lê Thị B</p>
+    <p class="review-date">Ngày 2 tháng 1, 2024</p>
+    <div class="star-rating">⭐⭐⭐⭐</div>
+    <p>Tôi rất thích sản phẩm này, chắc chắn sẽ mua lại </p>
+</div>
+<!-- Thêm các đánh giá khác ở đây -->
+</div>
+
+<!-- Sản phẩm liên quan -->
+<div class="related-products">
+<h3>Sản phẩm liên quan</h3>
+<li class="flashsale">
+<img src="/image/27053f0bcbb8ae81aca938b13806c008.jpg" alt="Sản phẩm 3">
+<b class="price-new">99.000đ</b>
+<del class="price-old">150.000đ</del>
+<b style="color: #28a745; font-size: 20px;">Lactac'd</b>
+<p>Dung dịch vệ sinh phụ nữ</p>
+<div class="progress-container">
+    <div class="progress-bar" style="width: 45%;">
+        <span class="progress-text">43%</span>
+    </div>
+</div>
+</li>
+<li class="flashsale">
+<img src="/image/Sua-Tam-Olay-Body-Cellscience-B3-Vitamin-C-Optic-Glow-Brightening-500mL-Ban-Trung-1-1.png" alt="Sản phẩm 1">
+<b class="price-new">299.000đ</b>
+<del class="price-old">350.000đ</del>
+<b style="color: #28a745; font-size: 20px;">Olay</b>
+<p>Sữa tắm trắng da Olay</p>
+<div class="progress-container">
+    <div class="progress-bar" style="width: 27%;">
+        <span class="progress-text">27%</span>
+    </div>
+</div>
+</li>
+
+
+<li class="flashsale">
+<img src="/image/R (1).jpg " alt="Sản phẩm 2">
+<b class="price-new">250.000đ</b>
+<del class="price-old">299.000đ</del>
+                <b style="color: #28a745; font-size: 20px;">Charme</b>
+                <p>Nước hoa nữ Charme</p>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 75%;">
+                        <span class="progress-text">75%</span>
+                    </div>
+                </div>
+            </li>
+
+            <li class="flashsale">
+                <img src="/image/d2953da138d910bce19acbea2205fbfd.jpg" alt="Sản phẩm 3">
+                <b class="price-new">320.000đ</b>
+                <del class="price-old">380.000đ</del>
+                <b style="color: #28a745; font-size: 20px;">Vaseline</b>
+                <p>Sữa dưỡng thể trắng da Vaseline</p>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 63%;">
+                        <span class="progress-text">63%</span>
+                    </div>
+                </div>
+            </li>
+            
+            <li class="flashsale">
+                <img src="/image/fce55fe9baf734bc4b32abb415854ee3_tn.jpg" alt="Sản phẩm 3">
+                <b class="price-new">210.000đ</b>
+                <del class="price-old">199.000đ</del>
+                <b style="color: #28a745; font-size: 20px;">Cocoon</b>
+                <p>Tẩy tế bào chết Cocoon cafe Dak LAk </p>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 89%;">
+                        <span class="progress-text">89%</span>
+                    </div>
+                </div>
+            </li>
+            
+                <!-- <form action="last" style="background-color: white;">
+                    <div class="line" style="background-color: pink; width: 100%; height: 5px;"></div>
+                    <div class="last-container">
+                        <li>
+                            <a href="#"><img src="/image/9vv4lgct.png" alt="" style="width: 165px;"></a>
+                            <a href="#"><h3>Thanh toán khi nhận hàng</h3></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="/image/v17s3bcl.png" style="width: 220px;" alt=""></a>
+                            <a href="#"><h3>Giao hàng miễn phí</h3></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="/image/Icon-Doi-Tra-Hang.jpg" style="width: 178px;" alt=""></a>
+                            <a href="#"><h3>Đổi trả miễn phí</h3></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="/image/fvi1ydj3.png" style="width: 193px;"></a>
+                            <a href="#"><h3>Thương hiệu chính hãng</h3></a>
+                        </li>
+                    </div> -->
+                <br><br><br>
+                <div class="hotline">
+                    <li>
+                        <h3>HỖ TRỢ KHÁCH HÀNG</h3><br>
+                        <a href="#" style="color: red;">Hot line: <b>0337083294</b></a><br>
+                        <a href="#">(miễn phí, 08-22h kể cả T7,CN)</a><br>
+                        <a href="#">Các câu hỏi thường gặp</a><br>
+                        <a href="#">Gửi yêu cầu hỗ trợ</a><br>
+                        <a href="#">Hướng dẫn đặt hàng</a><br>
+                        <a href="#">Phương thức vận chuyển</a><br>
+                        <a href="#">Chính sách đổi trả</a><br>
+                    </li>
+                    <li class="g">
+                        <h3>VỀ CHÚNG TÔI</h3><br>
+                        <a href="#">Giới thiệu</a><br>
+                        <a href="#">Tuyển dụng</a><br>
+                        <a href="#">Chính sách bảo mật</a><br>
+                        <a href="#">Điều khoản sử dụng</a><br>
+                        <a href="#">Liên hệ</a><br>
+                        <a href="#">Tư vấn khách hàng</a>
+                    </li>
+                    <li>
+                        <h3>HỢP TÁC VÀ LIÊN KẾT</h3><br>
+                        <a href="http://127.0.0.1:5500/website/Trang%20chu.html#">http://127.0.0.1:5500/website/Trang%20chu.html#</a><br>
+                        <a href="#">Cẩm nang</a><br>
+                        <div class="lienhe">
+                            <a href="https://www.facebook.com/nguyen.nhi.nho.1306/"><img src="/image/facebook.png" alt=""></a>
+                            <a href=""><img src="/image/youtube.png" alt=""></a>
+                            <a href="https://www.instagram.com/13th06.ng/"><img src="/image/instagram.png" alt=""></a>
+                        </div><br>
+                        <h3>THANH TOÁN</h3>
+                        <div class="thanhtoan">
+                            <a href="#"><img src="/image/visa.png" alt=""></a>
+                            <a href="#"><img src="/image/atm-card.png" alt=""></a>
+                        </div>    
+                    </li>
+                    <li>
+                        <h3>CẬP NHẬT THÔNG TIN KHUYẾN MÃI</h3><br>  
+                        <input type="email" placeholder="Nhập email của bạn">
+                        <button id="c">Cập nhật</button><br><br><br><br>
+                        <br>    <h3>KHIẾU NẠI GÓP Ý</h3><br>
+                        <button>0337083294</button><br>
+                    </li>
+                </div>
+            </form>
+                
+                
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+            <script src="javascrip.js"></script>
+        </ul>
+        </div>
+    </div>
+    <!-- JavaScript để xử lý sự kiện thay đổi ảnh và hiển thị phân loại -->
+    <script>
+        // Thay đổi ảnh chính khi nhấp vào ảnh nhỏ
+        function changeImage(imageUrl) {
+            document.getElementById('mainImage').src = imageUrl;
+        }
+
+        // Hiển thị phân loại khi di chuột qua ảnh nhỏ
+        const thumbnails = document.querySelectorAll('.thumbnail-container img');
+        const classification = document.createElement('div');
+        classification.classList.add('classification');
+        document.body.appendChild(classification);
+
+        thumbnails.forEach(thumbnail => {
+            thumbnail.addEventListener('mouseover', function() {
+                const classificationText = thumbnail.alt;
+                classification.style.display = 'block';
+                classification.textContent = `Phân loại: ${classificationText}`;
+                classification.style.left = `${thumbnail.getBoundingClientRect().left}px`;
+                classification.style.top = `${thumbnail.getBoundingClientRect().bottom + window.scrollY + 10}px`;
+            });
+
+            thumbnail.addEventListener('mouseout', function() {
+                classification.style.display = 'none';
+            });
+        });
+
+        // Xử lý sự kiện trượt ảnh
+    const leftArrow = document.getElementById('left-arrow');
+    const rightArrow = document.getElementById('right-arrow');
+    const thumbnailContainer = document.getElementById('thumbnail-container');
+
+    leftArrow.addEventListener('click', function() {
+        thumbnailContainer.scrollBy({
+            left: -120, // Điều chỉnh khoảng cách scroll
+            behavior: 'smooth'
+        });
+    });
+
+    rightArrow.addEventListener('click', function() {
+        thumbnailContainer.scrollBy({
+            left: 120, // Điều chỉnh khoảng cách scroll
+            behavior: 'smooth'
+        });
+    });
+    //
+    document.querySelectorAll('.coupon_copy').forEach(button => {
+        button.addEventListener('click', function() {
+            const couponCode = this.getAttribute('data-ega-coupon');
+            navigator.clipboard.writeText(couponCode).then(() => {
+                this.innerText = 'Đã sao chép mã';
+                this.disabled = true; // Vô hiệu hóa nút để ngăn chặn sao chép nhiều lần
+            }).catch(err => {
+                console.log('Something went wrong', err);
+            });
+        });
+    });
+    
+
+    </script>
+
+    </body>
+    </html> 
